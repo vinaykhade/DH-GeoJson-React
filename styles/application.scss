@@ -1,0 +1,7 @@
+// This is the top-level scss file. Import all other files in here.
+@import './reset';
+@import './mixins';
+@import './colorPallette';
+@import './home';
+@import '../node_modules/react-rangeslider/lib/index.css';
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';

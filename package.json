@@ -1,0 +1,54 @@
+{
+  "name": "GeoJSON",
+  "version": "1.0.0",
+  "description": "GeoJSON",
+  "scripts": {
+    "lint": "eslint src",
+    "start": "node server.js"
+  },
+  "repository": "https://github.com/noahlotzer/react-simple-boilerplate.git",
+  "keywords": [
+    "react",
+    "reactjs",
+    "boilerplate",
+    "reload",
+    "live",
+    "edit",
+    "webpack"
+  ],
+  "author": "Vinay Khade",
+  "license": "",
+
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "bootstrap": "^3.3.7",
+    "circle-to-polygon": "^1.0.0",
+    "css-loader": "^0.28.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^6.10.3",
+    "file-loader": "^0.11.2",
+    "geojson": "^0.5.0",
+    "global-mercator": "^2.8.4",
+    "leaflet": "^1.2.0",
+    "node-sass": "^4.5.3",
+    "prop-types": "^15.5.10",
+    "react-geosuggest": "^2.5.0",
+    "react-leaflet": "^1.6.6",
+    "react-rangeslider": "^2.1.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "underscore": "^1.8.3",
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.4"
+  },
+  "dependencies": {
+    "babel-loader": "^7.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "main": "server.js"
+}

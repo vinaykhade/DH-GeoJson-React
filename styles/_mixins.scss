@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
+
+$fontRailway: 'Raleway', sans-serif;
+
+@mixin font($color, $font-size, $line-height, $font-family, $font-weight) {
+  color: $color;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  font-family: $font-family;
+}
