@@ -38,6 +38,27 @@
 
 .geojson-output--container {
   margin-top: 40px;
+  .copy-paste-block {
+    margin-bottom: 40px;
+    label, a {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+    }
+    a {
+      @include font(blue, 18px, 20px, $fontRailway, 400);
+      margin-left: 10px;
+    }
+    input {
+      border: 1px solid $colorAAA;
+      margin-top: 10px;
+      padding: 5px 10px;
+      height: 48px;
+      width: 100%;
+      // text-transform: capitalize;
+      // @include font($colorAAA, 18px, 20px, $fontRailway, 300);
+    }
+  }
   label {
     @include font($color333, 18px, 20px, $fontRailway, 400);
     margin-bottom: 20px;

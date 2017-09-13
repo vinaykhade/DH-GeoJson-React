@@ -106,9 +106,10 @@ class App extends React.Component {
                   Remove the hide class to see the string format and copy-paste in geojson.io
                   */
                   geoJsonData ?
-                  <div className="hide">
-                    <label className="hide">Copy :</label>
-                    <div>{JSON.stringify(geoJsonData)}</div>
+                  <div className="copy-paste-block">
+                    <label>Copy & Paste in </label>
+                    <a href="http://geojson.io"  target="_blank"> geojson.io </a>
+                    <input type="text" value={JSON.stringify(geoJsonData)} />
                   </div> : null
                 }
 
