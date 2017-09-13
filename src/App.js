@@ -5,6 +5,7 @@ import _ from 'underscore';
 import Slider from 'react-rangeslider';
 import GeoJSON from 'geojson';
 import circleToPolygon from 'circle-to-polygon';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import GeoJsonComponent from './GeoJSON';
 
 class App extends React.Component {
@@ -14,31 +15,44 @@ class App extends React.Component {
     this.state = {
       position: [52.50698, 13.391380000000026],
       zoom: 13,
-      radius: 1000,
-      geoJsonData: null
+      radius: 2000,
+      geoJsonData: null,
+      copied: false,
+      opts: {
+        'readOnly': 'readOnly'
+      }
     }
     this.onSuggestSelect = this.onSuggestSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.copyData = this.copyData.bind(this);
   }
-
 
   onSuggestSelect(suggest) {
     const { radius } = this.state;
     let position = _.toArray(suggest.location);
     this.generateGeoJSONCircle(position, radius);
-    this.setState({ position })
+    this.setState({
+      position,
+      copied: false
+    })
   }
 
   handleChange(value) {
     const { position } = this.state;
     this.generateGeoJSONCircle(position, value);
-    this.setState({ radius: value});
+    this.setState({
+      radius: value,
+      copied: false
+    });
   };
 
   componentDidMount() {
-    this.generateGeoJSONCircle([52.50698, 13.39138000000002], 1000);
+    this.generateGeoJSONCircle([52.50698, 13.39138000000002], 2000);
   }
 
+  copyData() {
+    this.setState({copied: true});
+  }
   /* Alternate function to get GeoJSON Co-ordinates without directly using google api*/
   generateGeoJson(radius, position) {
     let polygon = circleToPolygon(position, radius, 32);
@@ -57,10 +71,10 @@ class App extends React.Component {
   generateGeoJSONCircle(position, radius) {
     let latlng = new google.maps.LatLng({lat: position[0], lng: position[1]});
     let points = [],
-        degreeStep = 360 / 12;
+        degreeStep = 360 / 32;
 
-    for(var i = 0; i < 12; i++) {
-      var gpos = google.maps.geometry.spherical.computeOffset(latlng, radius, degreeStep * i);
+    for(var i = 0; i < 32; i++) {
+      let gpos = google.maps.geometry.spherical.computeOffset(latlng, radius, degreeStep * i);
       points.push([gpos.lng(), gpos.lat()]);
     };
 
@@ -86,7 +100,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { radius, geoJsonData, position } = this.state;
+    const { radius, geoJsonData, position, copied, opts } = this.state;
 
     return (
       <div className="container-fluid restaurant-finder--container">
@@ -109,7 +123,21 @@ class App extends React.Component {
                   <div className="copy-paste-block">
                     <label>Copy & Paste in </label>
                     <a href="http://geojson.io"  target="_blank"> geojson.io </a>
-                    <input type="text" value={JSON.stringify(geoJsonData)} />
+                    <input
+                      type="text"
+                      value={JSON.stringify(geoJsonData)}
+                       {...opts}
+                      className={copied ? 'selected': ''}
+                       />
+                    <CopyToClipboard text={JSON.stringify(geoJsonData)}
+                      onCopy={this.copyData}>
+                      <button className="copy-btn">Copy</button>
+                    </CopyToClipboard>
+                    {
+                      copied ?
+                      <span className="copied-notify">Copied</span>
+                      : null
+                    }
                   </div> : null
                 }
 
@@ -127,7 +155,7 @@ class App extends React.Component {
               <h3>Adjust the radius</h3>
               <Slider
                 min={100}
-                max={2000}
+                max={4000}
                 value={radius}
                 onChange={this.handleChange}
               />

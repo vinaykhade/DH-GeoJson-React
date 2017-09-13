@@ -3,6 +3,9 @@
   .hide {
     display: none;
   }
+  .clear {
+    clear: both;
+  }
   .geo-map--container {
     min-height: 700px;
     width: 100%;
@@ -39,6 +42,7 @@
 .geojson-output--container {
   margin-top: 40px;
   .copy-paste-block {
+    position: relative;
     margin-bottom: 40px;
     label, a {
       display: inline-block;
@@ -49,14 +53,34 @@
       @include font(blue, 18px, 20px, $fontRailway, 400);
       margin-left: 10px;
     }
+    .copy-btn, input {
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: 10px;
+    }
     input {
       border: 1px solid $colorAAA;
-      margin-top: 10px;
+      border-right: none;
       padding: 5px 10px;
       height: 48px;
-      width: 100%;
-      // text-transform: capitalize;
-      // @include font($colorAAA, 18px, 20px, $fontRailway, 300);
+      width: calc(100% - 60px);
+      @include font($colorAAA, 18px, 20px, $fontRailway, 300);
+      &.selected {
+        background-color: $colorF6F6;
+      }
+    }
+    .copy-btn {
+      height: 48px;
+      @include font($color333, 18px, 20px, $fontRailway, 400);
+    }
+    .copied-notify {
+      background-color: $color333;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      padding: 5px 10px;
+      border-radius: 3px;
+      @include font(white, 12px, 14px, $fontRailway, 400);
     }
   }
   label {
@@ -85,7 +109,7 @@
 .address-autosuggest--block {
   .search--label {
     @include font($color333, 18px, 20px, $fontRailway, 400);
-    margin: 10px 0 20px;
+    margin: 10px 0 10px;
   }
   .geosuggest {
     width: 40%;
@@ -94,6 +118,7 @@
       position: absolute;
       left: 0;
       width: 100%;
+      z-index: 100;
       background-color: white;
     }
     .geosuggest__item--active {
