@@ -6,7 +6,7 @@ import Slider from 'react-rangeslider';
 import GeoJSON from 'geojson';
 import circleToPolygon from 'circle-to-polygon';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import GeoJsonComponent from './GeoJSON';
+import GeoJsonComponent from './GeoJson';
 
 class App extends React.Component {
 
