@@ -4,8 +4,6 @@ GeoJSON-React
 
 ### Usage
 
-Clone the boilerplate and create your own git repo.
-
 ```
 git clone https://github.com/vinaykhade/DH-GeoJson-React.git
 ```
